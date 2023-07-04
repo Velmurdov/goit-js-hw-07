@@ -18,14 +18,15 @@ const createGalleryItemEl = ({ preview, original, description }) =>
 galleryEl.innerHTML = galleryItems.map(createGalleryItemEl).join('');
 
 galleryEl.addEventListener('click', (evt) =>{
-    if (evt.target.classList.contains('gallery__image')){ 
+    const {target} = evt;
+    if (target.classList.contains('gallery__image')){ 
     evt.preventDefault();
 
-    const originalImg = evt.target.dataset.source;
+    const originalImg = target.dataset.source;
 
     const instance = basicLightbox.create(`<img src='${originalImg}' width='800' height='600'>`);
 
-    instance.show();
+    instance.show(); 
 
     instance.element().querySelector('img').setAttribute('src', originalImg );
 
